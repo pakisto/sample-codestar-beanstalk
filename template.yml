@@ -37,13 +37,16 @@ Parameters:
       - Prod
     Default: Stage
     Description: Stage that can be added to resource names
+  IsProd:
+    !Equals [!Ref Stage, Prod]
+
 
 Resources:
   EBApplication:
     Description: The AWS Elastic Beanstalk application, which is a container used to deploy the correct application configuration.
     Type: AWS::ElasticBeanstalk::Application
     Properties:
-      ApplicationName: !Sub '${ProjectId}-${Stage}-app'
+      ApplicationName: !If [!Ref IsProd, !Sub '${ProjectId}app', !Sub '${ProjectId}app-${Stage}']
       Description: The name of the AWS Elastic Beanstalk application to be created for this project.
   EBApplicationVersion:
     Description: The version of the AWS Elastic Beanstalk application to be created for this project.
