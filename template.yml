@@ -78,7 +78,6 @@ Resources:
       Description: The application to be deployed to the environment.
       TemplateName: !Ref 'EBConfigurationTemplate'
       VersionLabel: !Ref 'EBApplicationVersion'
-      NODE_ENV: !Ref 'Stage'
       OptionSettings:
       - Namespace: aws:autoscaling:launchconfiguration
         OptionName: IamInstanceProfile
