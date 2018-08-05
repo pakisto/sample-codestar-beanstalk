@@ -30,6 +30,14 @@ Parameters:
   EBInstanceProfile:
     Type: String
     Description: The IAM role that will be created for the Amazon EC2 Linux instances.
+  Stage:
+    Type: String
+    AllowedValues:
+      - Stage
+      - Prod
+    Default: Stage
+    Description: Stage that can be added to resource names
+
 Resources:
   EBApplication:
     Description: The AWS Elastic Beanstalk application, which is a container used to deploy the correct application configuration.
@@ -70,6 +78,7 @@ Resources:
       Description: The application to be deployed to the environment.
       TemplateName: !Ref 'EBConfigurationTemplate'
       VersionLabel: !Ref 'EBApplicationVersion'
+      NODE_ENV: !Ref 'Stage'
       OptionSettings:
       - Namespace: aws:autoscaling:launchconfiguration
         OptionName: IamInstanceProfile
