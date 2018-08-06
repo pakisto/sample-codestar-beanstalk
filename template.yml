@@ -94,6 +94,9 @@ Resources:
       - Namespace: aws:ec2:vpc
         OptionName: VPCId
         Value: !Ref 'VpcId'
+      - Namespace:   aws:elasticbeanstalk:application:environment
+        OptionName: NODE_ENV
+        Value: !Ref 'Stage'
       - !If
         - UseSubnet
         - Namespace: 'aws:ec2:vpc'
